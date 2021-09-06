@@ -140,9 +140,6 @@ function(input, output, session, .data) {
   
   # boxplot
   output$wykres <- renderPlotly({
-    validate(need(!is.null(input$x_num1), "Please choose a name"))
-    validate(need(!is.null(input$x_char2), "Please choose a name"))
-    validate(need(!is.null(input$x_char3), "Please choose a name"))
     
     plt <- plot_ly(dt_wyk(),y=dt_wyk()[,get(input$x_num1)], x =dt_wyk()[,get(input$x_char2)], 
                    color =dt_wyk()[,get(input$x_char3)] , type = "box") 
@@ -156,9 +153,7 @@ function(input, output, session, .data) {
   # scatterplot
   
   output$wykres1 <- renderPlotly({
-    validate(need(!is.null(input$x_num1), "Please choose a name"))
-    validate(need(!is.null(input$x_char3), "Please choose a name"))
-    
+
     plot_ly(dt_wyk(),x= dt_wyk()[,get(input$x_num1)],color = dt_wyk()[,get(input$x_char3)],
             type = 'histogram') %>% layout(xaxis = list(title = input$x_num1))
     
